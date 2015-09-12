@@ -7,7 +7,8 @@ from jinja2 import FileSystemLoader, Environment
 
 
 LANGUAGES = {
-        'ru': {'title': u'101 дзенская история'}        
+        'en': {'title': u'101 Zen Stories'},
+        'ru': {'title': u'101 дзенская история'},
 }
 
 
