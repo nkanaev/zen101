@@ -19,7 +19,7 @@ env = Environment(loader=loader)
 
 def main():
     out = os.path.join(basedir, 'output')
-    if os.path.isfile(out):
+    if os.path.exists(out):
         shutil.rmtree(out)
     os.mkdir(out)
 
