@@ -7,8 +7,8 @@ from jinja2 import FileSystemLoader, Environment
 
 
 LANGUAGES = {
-        'en': {'title': u'101 Zen Stories'},
-        'ru': {'title': u'101 дзенская история'},
+        'en': {'title': u'101 Zen Stories', 'local': u'english'},
+        'ru': {'title': u'101 дзенская история', 'local': u'русский'},
 }
 
 
@@ -20,8 +20,25 @@ env = Environment(loader=loader)
 def main():
     out = os.path.join(basedir, 'output')
     if os.path.exists(out):
-        shutil.rmtree(out)
-    os.mkdir(out)
+        for n in os.listdir(out):
+            out_file = os.path.join(out, n)
+            if os.path.isfile(out_file):
+                os.unlink(out_file)
+            else:
+                shutil.rmtree(out_file)
+    else:
+        os.mkdir(out)
+
+    shutil.copytree(os.path.join(basedir, 'static'), 
+                    os.path.join(basedir, 'output', 'static'))
+
+    main = env.get_template('main.html')
+    with open(os.path.join(out, 'index.html'), 'w') as f:
+        params = {
+            'title': 'o',
+            'langs': LANGUAGES,        
+        }
+        f.write(main.render(**params).encode('utf-8'))
 
     for lang, metadata in LANGUAGES.items():
         titles = []
