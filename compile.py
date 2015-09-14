@@ -35,6 +35,7 @@ def main():
     main = env.get_template('main.html')
     with open(os.path.join(out, 'index.html'), 'w') as f:
         params = {
+            'static': '/zen101/static',
             'title': 'o',
             'langs': LANGUAGES,        
         }
@@ -54,6 +55,7 @@ def main():
             title = re.match('# (.+)', content).groups()[0]
             with open(os.path.join(out_dir, out_file), 'w') as f:
                 params = {
+                    'static': '/zen101/static',
                     'title': title,
                     'content': markdown.markdown(content),
                 }
@@ -67,6 +69,7 @@ def main():
         index = env.get_template('index.html')
         with open(os.path.join(out_dir, 'index.html'), 'w') as f:
             params = {
+                'static': '/zen101/static',
                 'title': metadata['title'],
                 'titles': titles,
             }
