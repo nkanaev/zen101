@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block body_content %}
-    <img src="/static/enso.svg" class='logo'></img>
+    <img src="./static/enso.svg" class='logo'></img>
 
     <ul>
         {% for code, meta in langs.items() %}
-        <li><a href="/{{ code }}/">{{ meta.local }}</a></li>
+        <li><a href="./{{ code }}/">{{ meta.local }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
