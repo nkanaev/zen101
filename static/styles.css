@@ -59,6 +59,7 @@ a:hover, a:active {
   float: left;
   width: 33.3333%;
   text-align: left;
+  min-height: 1px;
 }
 
 .nav .next {
