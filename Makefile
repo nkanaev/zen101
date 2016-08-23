@@ -8,4 +8,4 @@ runlocal: compile
 	(cd output && python -m SimpleHTTPServer)
 
 publish: compile-gh
-	ghp-import output && git push git@github.com:nkanaev/zen101.git gh-pages:gh-pages
+	ghp-import output -m "$(shell date -u)" && git push git@github.com:nkanaev/zen101.git gh-pages:gh-pages -f
