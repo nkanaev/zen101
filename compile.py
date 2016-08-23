@@ -1,4 +1,5 @@
 #! encoding: utf-8
+from __future__ import unicode_literals
 import os
 import re
 import shutil
@@ -6,10 +7,27 @@ import markdown
 from jinja2 import FileSystemLoader, Environment 
 
 
-LANGUAGES = {
-        'en': {'title': u'101 Zen Stories', 'local': u'english'},
-        'ru': {'title': u'101 дзенская история', 'local': u'русский'},
-}
+LANGUAGES = [
+    {
+        'lang': 'en',
+        'title': '101 Zen Stories',
+        'local': 'english',
+        'prev': 'previous',
+        'next': 'next',
+        'toc': 'toc',
+    },
+    {
+        'lang': 'ru',
+        'title': '101 дзенская история',
+        'local': 'русский',
+        'prev': 'предыдущий',
+        'next': 'следующий',
+        'toc': 'оглавление',
+    },
+]
+
+
+STATIC_DIR = '/zen101/static' if os.getenv('GITHUB') else '/static'
 
 
 basedir = os.path.dirname(os.path.realpath(__file__))
@@ -32,48 +50,72 @@ def main():
     shutil.copytree(os.path.join(basedir, 'static'), 
                     os.path.join(basedir, 'output', 'static'))
 
-    main = env.get_template('main.html')
+    page_template = env.get_template('page.html')
+    main_template = env.get_template('main.html')
+    index_template = env.get_template('index.html')
+
     with open(os.path.join(out, 'index.html'), 'w') as f:
         params = {
-            'static': '/zen101/static',
-            'title': 'o',
-            'langs': LANGUAGES,        
+            'static': STATIC_DIR,
+            'title': '禪',
+            'langs': LANGUAGES,
         }
-        f.write(main.render(**params).encode('utf-8'))
+        f.write(main_template.render(**params).encode('utf-8'))
 
-    for lang, metadata in LANGUAGES.items():
-        titles = []
+    for metadata in LANGUAGES:
+        lang = metadata['lang']
         in_dir = os.path.join(basedir, 'content', lang)
         out_dir = os.path.join(basedir, 'output', lang)
         os.mkdir(out_dir)
-        page = env.get_template('page.html')
+
+        pages = []
         for filename in os.listdir(in_dir):
             with open(os.path.join(in_dir, filename)) as f:
                 content = f.read().decode('utf-8')
 
-            out_file = re.sub(r'\.md', '.html', filename)
             title = re.match('# (.+)', content).groups()[0]
-            with open(os.path.join(out_dir, out_file), 'w') as f:
-                params = {
-                    'static': '/zen101/static',
-                    'title': title,
-                    'content': markdown.markdown(content),
-                }
-                f.write(page.render(**params).encode('utf-8'))            
+            num = re.match('(\d+)', filename).groups()[0]
 
-            titles.append({
-                'name': title, 
-                'href': out_file
+            page_out_dir = os.path.join(out_dir, num)
+            page_out_file = os.path.join(page_out_dir, 'index.html')
+
+            pages.append({
+                'title': title,
+                'num': num,
+                'content': markdown.markdown(content),
+                'href': '/{}/{}/'.format(lang, num),
+                'out_dir': page_out_dir,
+                'out_file': page_out_file
             })
 
-        index = env.get_template('index.html')
+        for i, page in enumerate(pages):
+            page = pages[i]
+            prev = next = None
+            if i > 0:
+                prev = pages[i - 1]['href']
+            if i < len(pages) - 1:
+                next = pages[i + 1]['href']
+
+            os.mkdir(page['out_dir'])
+            with open(page['out_file'], 'w') as f:
+                params = {
+                    'static': STATIC_DIR,
+                    'text': metadata,
+                    'title': page['title'],
+                    'content': page['content'],
+                    'prev': prev,
+                    'next': next,
+                    'toc': '/{}/'.format(lang),
+                }
+                f.write(page_template.render(**params).encode('utf-8'))
+
         with open(os.path.join(out_dir, 'index.html'), 'w') as f:
             params = {
-                'static': '/zen101/static',
+                'static': STATIC_DIR,
                 'title': metadata['title'],
-                'titles': titles,
+                'pages': pages,
             }
-            f.write(index.render(**params).encode('utf-8'))
+            f.write(index_template.render(**params).encode('utf-8'))
 
 
 if __name__ == '__main__':

@@ -2,9 +2,9 @@
 {% block body_content %}
     <h1>{{ title }}</h1>
 
-    <ol>
-    {% for t in titles %}
-        <li><a href="{{ t.href }}">{{ t.name }}</a></li>
+    <ul>
+    {% for p in pages %}
+        <li><a href="{{ p.href }}">{{ p.title }}</a></li>
     {% endfor %}
-    </ol
+    </ul>
 {% endblock %}

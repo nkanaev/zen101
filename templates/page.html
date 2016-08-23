@@ -1,4 +1,20 @@
 {% extends 'base.html' %}
 {% block body_content %}
-    {{ content|indent(4) }}
+    {{ content }}
+
+    <div class="nav">
+        <div class="prev">
+            {% if prev %}
+            <a href={{ prev }}>{{ text['prev'] }}</a>
+            {% endif %}
+        </div>
+        <div class="toc">
+            <a href="{{ toc }}">{{ text['toc'] }}</a>
+        </div>
+        <div class="next">
+            {% if next %}
+            <a href={{ next }}>{{ text['next'] }}</a>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

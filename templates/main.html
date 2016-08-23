@@ -2,9 +2,9 @@
 {% block body_content %}
     <img src="{{ static }}/enso.svg" class='logo'></img>
 
-    <ul>
-        {% for code, meta in langs.items() %}
-	<li><a href="./{{ code }}/">{{ meta.local }}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="langs">
+    {% for l in langs %}
+        <span><a href="./{{ l.lang }}/">{{ l.local }}</a></span>
+    {% endfor %}
+    </div>
 {% endblock %}
