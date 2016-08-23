@@ -27,7 +27,7 @@ LANGUAGES = [
 ]
 
 
-STATIC_DIR = '/zen101/static' if os.getenv('GITHUB') else '/static'
+ROOT_URL = '/zen101' if os.getenv('GITHUB') else ''
 
 
 basedir = os.path.dirname(os.path.realpath(__file__))
@@ -56,7 +56,7 @@ def main():
 
     with open(os.path.join(out, 'index.html'), 'w') as f:
         params = {
-            'static': STATIC_DIR,
+            'root': ROOT_URL,
             'title': '禪',
             'langs': LANGUAGES,
         }
@@ -83,7 +83,7 @@ def main():
                 'title': title,
                 'num': num,
                 'content': markdown.markdown(content),
-                'href': '/{}/{}/'.format(lang, num),
+                'href': ROOT_URL + '/{}/{}/'.format(lang, num),
                 'out_dir': page_out_dir,
                 'out_file': page_out_file
             })
@@ -99,19 +99,19 @@ def main():
             os.mkdir(page['out_dir'])
             with open(page['out_file'], 'w') as f:
                 params = {
-                    'static': STATIC_DIR,
+                    'root': ROOT_URL,
                     'text': metadata,
                     'title': page['title'],
                     'content': page['content'],
                     'prev': prev,
                     'next': next,
-                    'toc': '/{}/'.format(lang),
+                    'toc': ROOT_URL + '/{}/'.format(lang),
                 }
                 f.write(page_template.render(**params).encode('utf-8'))
 
         with open(os.path.join(out_dir, 'index.html'), 'w') as f:
             params = {
-                'static': STATIC_DIR,
+                'root': ROOT_URL,
                 'title': metadata['title'],
                 'pages': pages,
             }
