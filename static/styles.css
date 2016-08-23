@@ -1,86 +1,104 @@
-@-webkit-keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-html {
+tml {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  margin: 3rem 1rem 3rem 10rem;
+  margin: 4rem 0 4rem 3rem;
+  padding: 0 1rem;
   font-family: 'PT Serif', georgia, serif;
-  width: 32rem;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;    
+  max-width: 32rem;
+  color: #666;
 }
 
-body * {
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-}
-h1, p, ol {
+h1, p, ul {
   margin: 0;
   padding: 0;
 }
 
 h1 {
   color: #222;
-  margin-bottom: 2rem;
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
-  animation-duration: 0.7s;
-  animation-fill-mode: both;
+  margin-bottom: 3rem;
 }
 
 p {
   line-height: 1.66rem;
-  color: #666;
   margin-bottom: 1rem;
 }
 
-ol, ul {
+ul {
   margin-left: 0;
   padding: 0;
 }
 
-ol li {
-  color: #666;
-  line-height: 1.66rem;
+ul li {
+  line-height: 3rem;
   display: list-item;
 }
 
 ul li {
-  list-stype-type: circle;
+  list-style: none;
 }
 
-a, a:visited, a:hover, a:active {
+a, a:visited {
   color: inherit;
   text-decoration: none;
+  transition: all 0.2s linear;
 }
 
-img.logo {
+a:hover, a:active {
+  color: #f36f6f;
+}
+
+.nav {
+  margin-top: 5rem;
+  color: #ddd;
+}
+
+.nav .prev {
+  float: left;
+  width: 33.3333%;
+  text-align: left;
+  min-height: 1px;
+}
+
+.nav .next {
+  float: right;
+  width: 33.3333%;
+  text-align: right;
+}
+
+.nav .toc {
+  float: left;
+  width: 33.3333%;
+  text-align:center;
+}
+
+.nav:after {
+  visibility: hidden;
+  display: block;
+  content: " ";
+  clear: both;
+}
+
+.langs {
+  width: 20rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.langs > span+span:before {
+  margin: 0 .5rem;
+  content: "/";
+}
+
+.logo {
   width: 20rem;
   height: auto;
 }
 
-@media screen and (max-width: 44rem) {
+@media screen and (max-width: 40rem) {
   body {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 3rem 1rem;
-  }
-
-  ol, ul {
-    margin-left: 2rem;
+    margin: 4rem auto 2rem;
   }
 }
