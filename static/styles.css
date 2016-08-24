@@ -1,4 +1,4 @@
-tml {
+html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -40,10 +40,14 @@ ul li {
   list-style: none;
 }
 
-a, a:visited {
+a {
   color: inherit;
   text-decoration: none;
   transition: all 0.2s linear;
+}
+
+a:visited {
+  color: #ddd;
 }
 
 a:hover, a:active {
