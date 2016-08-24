@@ -50,6 +50,10 @@ a:hover, a:active {
   color: #f36f6f;
 }
 
+a:visited {
+  color: #ddd;
+}
+
 .nav {
   margin-top: 5rem;
   color: #ddd;
