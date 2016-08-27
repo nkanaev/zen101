@@ -24,6 +24,14 @@ LANGUAGES = [
         'next': 'следующий',
         'toc': 'оглавление',
     },
+    {
+        'lang': 'pl',
+        'title': '101 opowieści zen',
+        'local': 'polski',
+        'prev': 'poprzednia',
+        'next': 'kolejna',
+        'toc': 'spis treści',
+    },
 ]
 
 
