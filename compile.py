@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 import os
 import re
 import shutil
-import markdown
+import markdown2
 from jinja2 import FileSystemLoader, Environment 
 
 
@@ -23,6 +23,14 @@ LANGUAGES = [
         'prev': 'предыдущий',
         'next': 'следующий',
         'toc': 'оглавление',
+    },
+    {
+        'lang': 'pl',
+        'title': '101 opowieści zen',
+        'local': 'polski',
+        'prev': 'poprzednia',
+        'next': 'kolejna',
+        'toc': 'spis treści',
     },
 ]
 
@@ -54,6 +62,8 @@ def main():
     main_template = env.get_template('main.html')
     index_template = env.get_template('index.html')
 
+    markdowner = markdown2.Markdown(extras=['smarty-pants'])
+
     with open(os.path.join(out, 'index.html'), 'w') as f:
         params = {
             'root': ROOT_URL,
@@ -69,7 +79,7 @@ def main():
         os.mkdir(out_dir)
 
         pages = []
-        for filename in os.listdir(in_dir):
+        for filename in (f for f in os.listdir(in_dir) if f.endswith('.md')):
             with open(os.path.join(in_dir, filename)) as f:
                 content = f.read().decode('utf-8')
 
@@ -82,7 +92,7 @@ def main():
             pages.append({
                 'title': title,
                 'num': num,
-                'content': markdown.markdown(content),
+                'content': markdowner.convert(content),
                 'href': ROOT_URL + '/{}/{}/'.format(lang, num),
                 'out_dir': page_out_dir,
                 'out_file': page_out_file
