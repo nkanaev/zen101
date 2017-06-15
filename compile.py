@@ -1,5 +1,4 @@
 #! encoding: utf-8
-from __future__ import unicode_literals
 import os
 import re
 import shutil
@@ -20,8 +19,8 @@ LANGUAGES = [
         'lang': 'ru',
         'title': '101 дзенская история',
         'local': 'русский',
-        'prev': 'предыдущий',
-        'next': 'следующий',
+        'prev': 'предыдущая',
+        'next': 'следующая',
         'toc': 'оглавление',
     },
     {
@@ -62,7 +61,7 @@ def main():
     main_template = env.get_template('main.html')
     index_template = env.get_template('index.html')
 
-    markdowner = markdown2.Markdown(extras=['smarty-pants'])
+    markdowner = markdown2.Markdown(extras=['smarty-pants', 'break-on-newline'])
 
     with open(os.path.join(out, 'index.html'), 'w') as f:
         params = {
@@ -70,7 +69,7 @@ def main():
             'title': '禪',
             'langs': LANGUAGES,
         }
-        f.write(main_template.render(**params).encode('utf-8'))
+        f.write(main_template.render(**params))
 
     for metadata in LANGUAGES:
         lang = metadata['lang']
@@ -81,7 +80,7 @@ def main():
         pages = []
         for filename in (f for f in os.listdir(in_dir) if f.endswith('.md')):
             with open(os.path.join(in_dir, filename)) as f:
-                content = f.read().decode('utf-8')
+                content = f.read()
 
             title = re.match('# (.+)', content).groups()[0]
             num = re.match('(\d+)', filename).groups()[0]
@@ -117,7 +116,7 @@ def main():
                     'next': next,
                     'toc': ROOT_URL + '/{}/'.format(lang),
                 }
-                f.write(page_template.render(**params).encode('utf-8'))
+                f.write(page_template.render(**params))
 
         with open(os.path.join(out_dir, 'index.html'), 'w') as f:
             params = {
@@ -125,7 +124,7 @@ def main():
                 'title': metadata['title'],
                 'pages': pages,
             }
-            f.write(index_template.render(**params).encode('utf-8'))
+            f.write(index_template.render(**params))
 
 
 if __name__ == '__main__':
