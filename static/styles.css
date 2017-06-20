@@ -46,14 +46,6 @@ a {
   transition: all 0.2s linear;
 }
 
-a:visited {
-  color: #ddd;
-}
-
-a.persistent {
-  color: inherit;
-}
-
 a:hover, a:active {
   color: #f36f6f;
 }
