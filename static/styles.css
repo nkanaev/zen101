@@ -26,6 +26,12 @@ p {
   margin-bottom: 1rem;
 }
 
+blockquote {
+  font-style: italic;
+  margin: 0 0 1rem 0rem;
+  line-height: 1.66rem;
+}
+
 ul {
   margin-left: 0;
   padding: 0;
