@@ -6,19 +6,14 @@ html {
 body {
   margin: 4rem 0 4rem 3rem;
   padding: 0 1rem;
-  font-family: 'PT Serif', georgia, serif;
+  font-family: georgia, serif;
   max-width: 32rem;
-  color: #666;
+  color: #333;
 }
 
 h1, p, ul {
   margin: 0;
   padding: 0;
-}
-
-h1 {
-  color: #222;
-  margin-bottom: 3rem;
 }
 
 p {
@@ -46,10 +41,16 @@ ul li {
   list-style: none;
 }
 
+h1 {
+  margin-bottom: 3rem;
+  font-size: 1.7rem;
+  font-style: italic;
+}
+
 a {
-  color: inherit;
+  color: #333;
   text-decoration: none;
-  transition: all 0.2s linear;
+  transition: color 0.2s linear;
 }
 
 a:hover, a:active {
@@ -58,7 +59,10 @@ a:hover, a:active {
 
 .nav {
   margin-top: 5rem;
-  color: #ddd;
+}
+
+.nav a {
+  color: #999;
 }
 
 .nav .prev {
