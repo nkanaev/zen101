@@ -1,19 +1,26 @@
 html {
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
+  font-size: 16px;
+  line-height: 1.15; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
 }
 
 body {
+  max-width: 32rem;
   margin: 4rem 0 4rem 3rem;
   padding: 0 1rem;
   font-family: georgia, serif;
-  max-width: 32rem;
   color: #333;
 }
 
-h1, p, ul {
-  margin: 0;
-  padding: 0;
+img {
+  border-style: none;
+}
+
+h1 {
+  margin-bottom: 3rem;
+  font-size: 1.7rem;
+  font-style: italic;
 }
 
 p {
@@ -35,22 +42,15 @@ ul {
 ul li {
   line-height: 3rem;
   display: list-item;
-}
-
-ul li {
   list-style: none;
 }
 
-h1 {
-  margin-bottom: 3rem;
-  font-size: 1.7rem;
-  font-style: italic;
-}
-
 a {
-  color: #333;
+  color: inherit;
   text-decoration: none;
-  transition: color 0.2s linear;
+  transition: color 0.2s ease;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
 }
 
 a:hover, a:active {
@@ -59,9 +59,6 @@ a:hover, a:active {
 
 .nav {
   margin-top: 5rem;
-}
-
-.nav a {
   color: #999;
 }
 
@@ -98,7 +95,7 @@ a:hover, a:active {
 }
 
 .langs > span+span:before {
-  margin: 0 .5rem;
+  margin: 0.5rem;
   content: "/";
 }
 
