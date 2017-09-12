@@ -39,7 +39,7 @@ ROOT_URL = '/zen101' if os.getenv('GITHUB') else ''
 
 basedir = os.path.dirname(os.path.realpath(__file__))
 loader = FileSystemLoader(os.path.join(basedir, 'templates'))
-env = Environment(loader=loader)
+env = Environment(loader=loader, lstrip_blocks=True, trim_blocks=True)
 
 
 def main():
@@ -57,9 +57,9 @@ def main():
     shutil.copytree(os.path.join(basedir, 'static'), 
                     os.path.join(basedir, 'output', 'static'))
 
-    page_template = env.get_template('page.html')
-    main_template = env.get_template('main.html')
+    story_template = env.get_template('story.html')
     index_template = env.get_template('index.html')
+    toc_template = env.get_template('toc.html')
 
     markdowner = markdown2.Markdown(extras=['smarty-pants', 'break-on-newline'])
 
@@ -69,7 +69,7 @@ def main():
             'title': '禪',
             'langs': LANGUAGES,
         }
-        f.write(main_template.render(**params))
+        f.write(index_template.render(**params))
 
     for metadata in LANGUAGES:
         lang = metadata['lang']
@@ -116,7 +116,7 @@ def main():
                     'next': next,
                     'toc': ROOT_URL + '/{}/'.format(lang),
                 }
-                f.write(page_template.render(**params))
+                f.write(story_template.render(**params))
 
         with open(os.path.join(out_dir, 'index.html'), 'w') as f:
             params = {
@@ -124,7 +124,7 @@ def main():
                 'title': metadata['title'],
                 'pages': pages,
             }
-            f.write(index_template.render(**params))
+            f.write(toc_template.render(**params))
 
 
 if __name__ == '__main__':

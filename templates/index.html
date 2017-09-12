@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block body_content %}
-    <h1>{{ title }}</h1>
+    <img src="{{ root }}/static/enso.svg" class='logo'></img>
 
-    <ul>
-    {% for p in pages %}
-        <li><a href="{{ p.href }}">{{ p.title }}</a></li>
+    <div class="langs">
+    {% for l in langs %}
+        <span><a href="{{ root }}/{{ l.lang }}/">{{ l.local }}</a></span>
     {% endfor %}
-    </ul>
+    </div>
 {% endblock %}
