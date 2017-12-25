@@ -40,7 +40,7 @@ ul {
 }
 
 ul li {
-  line-height: 3rem;
+  margin: 2rem 0;
   display: list-item;
   list-style: none;
 }
@@ -88,18 +88,13 @@ a:hover, a:active {
   clear: both;
 }
 
-.langs {
-  width: 20rem;
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.langs > span+span:before {
-  margin: 0.5rem;
-  content: "/";
-}
-
 .logo {
+  position: fixed;
+  top: -1rem;
+  left: -2rem;
+  opacity: 0.2;
+  z-index: -1;
+  display: block;
   width: 20rem;
   height: auto;
 }
