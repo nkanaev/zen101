@@ -3,6 +3,7 @@ import os
 import re
 import shutil
 import markdown2
+import pyphen
 from jinja2 import FileSystemLoader, Environment 
 
 
@@ -73,9 +74,16 @@ def main():
 
     for metadata in LANGUAGES:
         lang = metadata['lang']
+        dic = pyphen.Pyphen(lang=lang)
         in_dir = os.path.join(basedir, 'content', lang)
         out_dir = os.path.join(basedir, 'output', lang)
         os.mkdir(out_dir)
+
+        def insert_hyphens(match):
+            word = match.group()
+            if word[0].isupper():
+                return word
+            return dic.inserted(word, '&shy;')
 
         pages = []
         for filename in (f for f in os.listdir(in_dir) if f.endswith('.md')):
@@ -85,13 +93,16 @@ def main():
             title = re.match('# (.+)', content).groups()[0]
             num = re.match('(\d+)', filename).groups()[0]
 
+            content = markdowner.convert(content)
+            content = re.sub(r'\w+', insert_hyphens, content)
+
             page_out_dir = os.path.join(out_dir, num)
             page_out_file = os.path.join(page_out_dir, 'index.html')
 
             pages.append({
                 'title': title,
                 'num': num,
-                'content': markdowner.convert(content),
+                'content': content,
                 'href': ROOT_URL + '/{}/{}/'.format(lang, num),
                 'out_dir': page_out_dir,
                 'out_file': page_out_file
