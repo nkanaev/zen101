@@ -101,13 +101,14 @@ def main():
 
             pages.append({
                 'title': title,
-                'num': num,
+                'num': int(num),
                 'content': content,
                 'href': ROOT_URL + '/{}/{}/'.format(lang, num),
                 'out_dir': page_out_dir,
                 'out_file': page_out_file
             })
 
+        pages = sorted(pages, key=lambda p: p['num'])
         for i, page in enumerate(pages):
             page = pages[i]
             prev = next = None

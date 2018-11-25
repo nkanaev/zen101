@@ -1,8 +1,8 @@
 html {
-  font-size: 16px;
-  line-height: 1.15; /* 1 */
-  -ms-text-size-adjust: 100%; /* 2 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+  font-size: 18px;
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -43,6 +43,7 @@ ul li {
   margin: 2rem 0;
   display: list-item;
   list-style: none;
+  line-height: 1.66rem;
 }
 
 a {
