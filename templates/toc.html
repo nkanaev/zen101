@@ -1,9 +1,18 @@
-{% extends 'base.html' %}
-{% block body_content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="icon" href="{{ root }}/static/favicon.ico">
+    <link rel="stylesheet" href="{{ root }}/static/styles.css">
+</head>
+<body>
     <h1>{{ title }}</h1>
     <ul>
-    {% for p in pages %}
+    {{ #for p : pages }}
         <li><a href="{{ p.href }}">{{ p.title }}</a></li>
-    {% endfor %}
+    {{ #end }}
     </ul>
-{% endblock %}
+</body>
+</html>

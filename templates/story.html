@@ -1,20 +1,28 @@
-{% extends 'base.html' %}
-{% block body_content %}
-    {{ content|indent(4) }}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="icon" href="{{ root }}/static/favicon.ico">
+    <link rel="stylesheet" href="{{ root }}/static/styles.css">
+</head>
+<body>
+    {{ content|indent:4|noescape }}
     <div class="nav">
         <div class="prev">
-            {% if prev %}
+        {{ #if prev }}
             <a href={{ prev }}>{{ text['prev'] }}</a>
-            {% endif %}
+        {{ #end }}
         </div>
         <div class="toc">
             <a href="{{ toc }}">{{ text['toc'] }}</a>
         </div>
         <div class="next">
-            {% if next %}
+        {{ #if next }}
             <a href={{ next }}>{{ text['next'] }}</a>
-            {% endif %}
+        {{ #end }}
         </div>
     </div>
-{% endblock %}
+</body>
+</html>

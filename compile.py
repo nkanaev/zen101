@@ -4,8 +4,10 @@ import re
 import shutil
 import markdown2
 import pyphen
-from jinja2 import FileSystemLoader, Environment 
+import misai
 
+
+ROOT_URL = '/zen101' if os.getenv('GITHUB') else ''
 
 LANGUAGES = [
     {
@@ -35,16 +37,17 @@ LANGUAGES = [
 ]
 
 
-ROOT_URL = '/zen101' if os.getenv('GITHUB') else ''
+BASEDIR = os.path.dirname(os.path.realpath(__file__))
 
+x = 0
 
-basedir = os.path.dirname(os.path.realpath(__file__))
-loader = FileSystemLoader(os.path.join(basedir, 'templates'))
-env = Environment(loader=loader, lstrip_blocks=True, trim_blocks=True)
+@misai.filter
+def indent(content, num):
+    return re.sub('\n', '\n' + ' ' * num, str(content), flags=re.M)
 
 
 def main():
-    out = os.path.join(basedir, 'output')
+    out = os.path.join(BASEDIR, 'output')
     if os.path.exists(out):
         for n in os.listdir(out):
             out_file = os.path.join(out, n)
@@ -55,18 +58,20 @@ def main():
     else:
         os.mkdir(out)
 
-    shutil.copytree(os.path.join(basedir, 'static'), 
-                    os.path.join(basedir, 'output', 'static'))
+    shutil.copytree(
+        os.path.join(BASEDIR, 'static'), os.path.join(BASEDIR, 'output', 'static'))
 
-    story_template = env.get_template('story.html')
-    index_template = env.get_template('index.html')
-    toc_template = env.get_template('toc.html')
+    loader = misai.Loader(
+        basedir=os.path.join(BASEDIR, 'templates'),
+        locals={'root': ROOT_URL})
+    story_template = loader.get('story.html')
+    index_template = loader.get('index.html')
+    toc_template = loader.get('toc.html')
 
     markdowner = markdown2.Markdown(extras=['smarty-pants', 'break-on-newline'])
 
     with open(os.path.join(out, 'index.html'), 'w') as f:
         params = {
-            'root': ROOT_URL,
             'title': '禪',
             'langs': LANGUAGES,
         }
@@ -75,8 +80,8 @@ def main():
     for metadata in LANGUAGES:
         lang = metadata['lang']
         dic = pyphen.Pyphen(lang=lang)
-        in_dir = os.path.join(basedir, 'content', lang)
-        out_dir = os.path.join(basedir, 'output', lang)
+        in_dir = os.path.join(BASEDIR, 'content', lang)
+        out_dir = os.path.join(BASEDIR, 'output', lang)
         os.mkdir(out_dir)
 
         def insert_hyphens(match):
@@ -95,6 +100,7 @@ def main():
 
             content = markdowner.convert(content)
             content = re.sub(r'\w+', insert_hyphens, content)
+            content = re.sub('\n\n', '\n', content).strip()
 
             page_out_dir = os.path.join(out_dir, num)
             page_out_file = os.path.join(page_out_dir, 'index.html')
@@ -120,7 +126,6 @@ def main():
             os.mkdir(page['out_dir'])
             with open(page['out_file'], 'w') as f:
                 params = {
-                    'root': ROOT_URL,
                     'text': metadata,
                     'title': page['title'],
                     'content': page['content'],
@@ -132,7 +137,6 @@ def main():
 
         with open(os.path.join(out_dir, 'index.html'), 'w') as f:
             params = {
-                'root': ROOT_URL,
                 'title': metadata['title'],
                 'pages': pages,
             }
