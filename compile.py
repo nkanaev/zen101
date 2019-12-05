@@ -3,7 +3,7 @@ import os
 import re
 import shutil
 import markdown2
-import pyphen
+#import pyphen
 import misai
 
 
@@ -34,6 +34,14 @@ LANGUAGES = [
         'next': 'kolejna',
         'toc': 'spis treści',
     },
+    {
+        'lang': 'it',
+        'title': '101 historia zen',
+        'local': 'italiano',
+        'prev': 'prev',
+        'next': 'next',
+        'toc': 'toc',
+    }
 ]
 
 
@@ -79,13 +87,14 @@ def main():
 
     for metadata in LANGUAGES:
         lang = metadata['lang']
-        dic = pyphen.Pyphen(lang=lang)
+        #dic = pyphen.Pyphen(lang=lang)
         in_dir = os.path.join(BASEDIR, 'content', lang)
         out_dir = os.path.join(BASEDIR, 'output', lang)
         os.mkdir(out_dir)
 
         def insert_hyphens(match):
             word = match.group()
+            return word
             if word[0].isupper():
                 return word
             return dic.inserted(word, '&shy;')
