@@ -101,7 +101,7 @@ a:hover, a:active {
   height: auto;
 }
 
-@media screen and (max-width: 40rem) {
+@media screen and (max-width: 44rem) {
   body {
     margin: 4rem auto 2rem;
   }
