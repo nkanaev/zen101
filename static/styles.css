@@ -11,6 +11,7 @@ body {
   padding: 0 1rem;
   font-family: georgia, serif;
   color: #333;
+  hyphens: auto;
 }
 
 img {

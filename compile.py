@@ -3,7 +3,6 @@ import os
 import re
 import shutil
 import markdown2
-#import pyphen
 import misai
 
 
@@ -87,17 +86,9 @@ def main():
 
     for metadata in LANGUAGES:
         lang = metadata['lang']
-        #dic = pyphen.Pyphen(lang=lang)
         in_dir = os.path.join(BASEDIR, 'content', lang)
         out_dir = os.path.join(BASEDIR, 'output', lang)
         os.mkdir(out_dir)
-
-        def insert_hyphens(match):
-            word = match.group()
-            return word
-            if word[0].isupper():
-                return word
-            return dic.inserted(word, '&shy;')
 
         pages = []
         for filename in (f for f in os.listdir(in_dir) if f.endswith('.md')):
@@ -108,7 +99,6 @@ def main():
             num = re.match('(\d+)', filename).groups()[0]
 
             content = markdowner.convert(content)
-            content = re.sub(r'\w+', insert_hyphens, content)
             content = re.sub('\n\n', '\n', content).strip()
 
             page_out_dir = os.path.join(out_dir, num)
@@ -135,6 +125,7 @@ def main():
             os.mkdir(page['out_dir'])
             with open(page['out_file'], 'w') as f:
                 params = {
+                    'lang': lang,
                     'text': metadata,
                     'title': page['title'],
                     'content': page['content'],
@@ -148,6 +139,7 @@ def main():
             params = {
                 'title': metadata['title'],
                 'pages': pages,
+                'lang': lang,
             }
             f.write(toc_template.render(**params))
 
