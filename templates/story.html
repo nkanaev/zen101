@@ -10,19 +10,15 @@
 <body>
     {{ content|indent:4|noescape }}
     <div class="nav">
-        <div class="prev">
-        {{ #if prev }}
-            <a href={{ prev }}>{{ text['prev'] }}</a>
-        {{ #end }}
-        </div>
-        <div class="toc">
-            <a href="{{ toc }}">{{ text['toc'] }}</a>
-        </div>
-        <div class="next">
-        {{ #if next }}
-            <a href={{ next }}>{{ text['next'] }}</a>
-        {{ #end }}
-        </div>
+    {{ #if prev }}
+        <a class="nav-item prev" href={{ prev }}>&#x25C0;</a>
+    {{ #else }}
+        <span class="nav-item"></span>
+    {{ #end }}
+        <a class="nav-item" href="{{ toc }}">&#x25C9;</a>
+    {{ #if next }}
+        <a class="nav-item next" href={{ next }}>&#x25B6;</a>
+    {{ #end }}
     </div>
 </body>
 </html>

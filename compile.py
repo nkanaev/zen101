@@ -13,33 +13,21 @@ LANGUAGES = [
         'lang': 'en',
         'title': '101 Zen Stories',
         'local': 'english',
-        'prev': 'previous',
-        'next': 'next',
-        'toc': 'toc',
     },
     {
         'lang': 'ru',
         'title': '101 дзенская история',
         'local': 'русский',
-        'prev': 'предыдущая',
-        'next': 'следующая',
-        'toc': 'оглавление',
     },
     {
         'lang': 'pl',
         'title': '101 opowieści zen',
         'local': 'polski',
-        'prev': 'poprzednia',
-        'next': 'kolejna',
-        'toc': 'spis treści',
     },
     {
         'lang': 'it',
         'title': '101 historia zen',
         'local': 'italiano',
-        'prev': 'prev',
-        'next': 'next',
-        'toc': 'toc',
     }
 ]
 

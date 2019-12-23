@@ -61,26 +61,34 @@ a:hover, a:active {
 
 .nav {
   margin-top: 5rem;
-  color: #999;
+  color: #ddd;
 }
 
-.nav .prev {
+.nav:hover * {
+  color: #333;
+}
+
+.nav:hover a:hover {
+  color: #f36f6f;
+}
+
+.nav-item {
+  display: inline-block;
+  width: 33%;
+  padding: 0.5rem 0;
+  text-align: center;
   float: left;
-  width: 33.3333%;
+}
+
+.nav-item.prev {
+  float: left;
   text-align: left;
   min-height: 1px;
 }
 
-.nav .next {
+.nav-item.next {
   float: right;
-  width: 33.3333%;
   text-align: right;
-}
-
-.nav .toc {
-  float: left;
-  width: 33.3333%;
-  text-align:center;
 }
 
 .nav:after {
