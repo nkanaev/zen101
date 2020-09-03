@@ -23,6 +23,15 @@
     </ul>
 {{ #elif page == 'story' }}
     {{ body|indent:4|noescape }}
+    <nav>
+    {{ #if prev }}
+        <a href="{{prev}}"><img src="{{ root }}/chevron-left.svg" alt="prev"></a>
+    {{ #end }}
+        <a href="./../"><img src="{{ root }}/list.svg" alt="toc"></a>
+    {{ #if next }}
+        <a href="{{next}}"><img src="{{ root }}/chevron-right.svg" alt="next"></a>
+    {{ #end }}
+    </nav>
 {{ #end }}
 </body>
 </html>

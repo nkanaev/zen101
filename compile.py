@@ -48,7 +48,7 @@ def main():
         shutil.rmtree(outdir)
     os.mkdir(outdir)
 
-    for static in ['favicon.ico', 'styles.css']:
+    for static in ['favicon.ico', 'styles.css', 'chevron-left.svg', 'chevron-right.svg', 'list.svg']:
         shutil.copy(path('assets', static), path('output', static))
 
     # dump: index
@@ -65,6 +65,8 @@ def main():
             params = {
                 'page': 'story', 'lang': lang, 'root': '../..',
                 'title': s['title'], 'body': s['body'],
+                'prev': '../%03d' % (num-1) if num != 1 else None,
+                'next': '../%03d' % (num+1) if num != 101 else None,
             }
             dump(path('output', lang, '%03d' % num, 'index.html'), template.render(**params))
 

@@ -59,15 +59,20 @@ a:hover, a:active {
   color: #f36f6f;
 }
 
-.logo {
-  position: fixed;
-  top: -1rem;
-  left: -2rem;
-  opacity: 0.2;
-  z-index: -1;
-  display: block;
-  width: 20rem;
-  height: auto;
+nav {
+  margin-top: 6rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+nav a, nav span {
+  display: inline-block;
+}
+
+nav img, nav span {
+  height: 1rem;
+  width: 1rem;
+  padding: 1rem;
 }
 
 @media screen and (max-width: 44rem) {
