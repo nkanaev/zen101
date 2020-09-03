@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +8,22 @@
     <link rel="stylesheet" href="{{ root }}/static/styles.css">
 </head>
 <body>
+{{ #if page == 'toc' }}
+    <h1>{{ title }}</h1>
+    <ul>
+    {{ #for p : pages }}
+        <li><a href="{{ p.href }}">{{ p.title }}</a></li>
+    {{ #end }}
+    </ul>
+{{ #elif page == 'index' }}
     <img src="{{ root }}/static/enso.svg" class="logo"></img>
     <ul>
     {{ #for l : langs }}
         <li><a href="{{ root }}/{{ l.lang }}/">{{ l.local }}</a></li>
     {{ #end }}
     </ul>
+{{ #elif page == 'story' }}
+    {{ body|indent:4|noescape }}
+{{ #end }}
 </body>
 </html>

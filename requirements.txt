@@ -1,3 +1,2 @@
-Jinja2==2.8
-markdown2==2.3.1
-Pyphen==0.9.5
+markdown2
+misai
