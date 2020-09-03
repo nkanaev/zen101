@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
-    <link rel="icon" href="{{ root }}/static/favicon.ico">
-    <link rel="stylesheet" href="{{ root }}/static/styles.css">
+    <link rel="icon" href="{{ root }}/favicon.ico">
+    <link rel="stylesheet" href="{{ root }}/styles.css">
 </head>
 <body>
 {{ #if page == 'toc' }}
     <h1>{{ title }}</h1>
     <ul>
-    {{ #for p : pages }}
-        <li><a href="{{ p.href }}">{{ p.title }}</a></li>
+    {{ #for s : stories }}
+        <li><a href="{{ s.href }}">{{ s.title }}</a></li>
     {{ #end }}
     </ul>
 {{ #elif page == 'index' }}
-    <img src="{{ root }}/static/enso.svg" class="logo"></img>
     <ul>
     {{ #for l : langs }}
-        <li><a href="{{ root }}/{{ l.lang }}/">{{ l.local }}</a></li>
+        <li><a href="{{ root }}/{{ l }}/">{{ langs[l] }}</a></li>
     {{ #end }}
     </ul>
 {{ #elif page == 'story' }}

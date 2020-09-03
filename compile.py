@@ -7,12 +7,12 @@ import misai
 
 BASEDIR = os.path.dirname(os.path.realpath(__file__))
 
-LANGUAGES = [
-    {'en': '101 Zen Stories'},
-    {'it': '101 дзенская история'},
-    {'ru': '101 opowieści zen'},
-    {'pl': '101 historia zen'}
-]
+LANGUAGES = {
+    'en': '101 Zen Stories',
+    'it': '101 Дзенская История',
+    'ru': '101 Opowieści Zen',
+    'pl': '101 Historia Zen',
+}
 
 
 @misai.filter
@@ -24,10 +24,6 @@ def main():
     path = lambda *pathnames: os.path.join(BASEDIR, *pathnames)
     read = lambda filepath: open(filepath).read()
     dump = lambda filepath, content: open(filepath, 'w').write(content)
-
-    outdir = path('output')
-    if os.path.exists(outdir):
-        shutil.rmtree(outdir)
 
     template = misai.Template(open(path('assets', 'base.html')).read())
     markdown = markdown2.Markdown(extras=['smarty-pants', 'break-on-newline'])
@@ -41,27 +37,38 @@ def main():
             body = re.sub('\n\n', '\n', body).strip()
 
             stories.append({
-                'title': re.match('<h1>(.+?)</h1>', body).groups()[0],
+                'title': misai.noescapestr(re.match('<h1>(.+?)</h1>', body).groups()[0]),
                 'body': body,
-                'href': './{l}/{n}/'.format(l=lang, n=num),
-                'filepath': path('output', lang, num, 'index.html')
+                'num': num,
             })
         allstories[lang] = stories
 
-    for static in ['enso.svg', 'favicon.ico', 'styles.css']:
-        shutil.copy(path('assets', static), path('output'))
+    outdir = path('output')
+    if os.path.isdir(outdir):
+        shutil.rmtree(outdir)
+    os.mkdir(outdir)
+
+    for static in ['favicon.ico', 'styles.css']:
+        shutil.copy(path('assets', static), path('output', static))
 
     # dump: index
-    params = {'page': 'index', 'title': '禪', 'langs': LANGUAGES, 'root': '.'}
+    params = {'page': 'index', 'lang': '', 'title': '禪', 'langs': LANGUAGES, 'root': '.'}
     dump(path('output', 'index.html'), template.render(**params))
 
     # dump: toc & stories
-    for lang, stories in allstories:
+    for lang, stories in allstories.items():
+        os.mkdir(path('output', lang))
         for s in stories:
-            params = {'lang': lang, 'page': 'story', 'title': s['title'], 'body': s['body'], 'root': './..'}
-            dump(s['filepath'], template.render(**params))
+            num = s['num']
+            os.mkdir(path('output', lang, '%03d' % num))
+            s['href'] = './{n}/'.format(n='%03d' % num)
+            params = {
+                'page': 'story', 'lang': lang, 'root': '../..',
+                'title': s['title'], 'body': s['body'],
+            }
+            dump(path('output', lang, '%03d' % num, 'index.html'), template.render(**params))
 
-        params = {'lang': lang, 'page': 'toc', 'title': LANGUAGES[lang], 'stories': stories, 'root': '.'}
+        params = {'page': 'toc', 'lang': lang, 'title': LANGUAGES[lang], 'stories': stories, 'root': '..'}
         dump(path('output', lang, 'index.html'), template.render(**params))
 
 
