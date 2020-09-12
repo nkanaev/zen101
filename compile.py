@@ -9,9 +9,9 @@ BASEDIR = os.path.dirname(os.path.realpath(__file__))
 
 LANGUAGES = {
     'en': '101 Zen Stories',
-    'it': '101 Дзенская История',
-    'ru': '101 Opowieści Zen',
-    'pl': '101 Historia Zen',
+    'ru': '101 Дзенская История',
+    'pl': '101 Opowieści Zen',
+    'it': '101 Historia Zen',
 }
 
 
