@@ -12,6 +12,7 @@ LANGUAGES = {
     'ru': '101 Дзенская История',
     'pl': '101 Opowieści Zen',
     'it': '101 Historia Zen',
+    'es': '101 Cuentos Zen',
 }
 
 

@@ -1,2 +1,2 @@
 markdown2
-misai
+git+https://github.com/nkanaev/misai@master
