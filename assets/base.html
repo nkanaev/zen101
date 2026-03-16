@@ -1,37 +1,37 @@
 <!DOCTYPE html>
-<html lang="{{ lang }}">
+<html lang="{{ .Lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <link rel="icon" href="{{ root }}/favicon.ico">
-    <link rel="stylesheet" href="{{ root }}/styles.css">
+    <title>{{ .Title }}</title>
+    <link rel="icon" href="{{ .Root }}/favicon.ico">
+    <link rel="stylesheet" href="{{ .Root }}/styles.css">
 </head>
 <body>
-{{ #if page == 'toc' }}
-    <h1>{{ title }}</h1>
+{{ if eq .Page "toc" }}
+    <h1>{{ .Title }}</h1>
     <ul>
-    {{ #for s : stories }}
-        <li><a href="{{ s.href }}">{{ s.title }}</a></li>
-    {{ #end }}
+    {{ range .Stories }}
+        <li><a href="{{ .Href }}">{{ .Title }}</a></li>
+    {{ end }}
     </ul>
-{{ #elif page == 'index' }}
+{{ else if eq .Page "index" }}
     <ul>
-    {{ #for l : langs }}
-        <li><a href="{{ root }}/{{ l }}/">{{ langs[l] }}</a></li>
-    {{ #end }}
+    {{ range .Langs }}
+        <li><a href="{{ $.Root }}/{{ .Code }}/">{{ .Name }}</a></li>
+    {{ end }}
     </ul>
-{{ #elif page == 'story' }}
-    {{ body|indent:4|noescape }}
+{{ else if eq .Page "story" }}
+    {{ .Body }}
     <nav>
-    {{ #if prev }}
-        <a href="{{prev}}"><img src="{{ root }}/chevron-left.svg" alt="prev"></a>
-    {{ #end }}
-        <a href="./../"><img src="{{ root }}/list.svg" alt="toc"></a>
-    {{ #if next }}
-        <a href="{{next}}"><img src="{{ root }}/chevron-right.svg" alt="next"></a>
-    {{ #end }}
+    {{ if .Prev }}
+        <a href="{{ .Prev }}"><img src="{{ .Root }}/chevron-left.svg" alt="prev"></a>
+    {{ end }}
+        <a href="./../"><img src="{{ .Root }}/list.svg" alt="toc"></a>
+    {{ if .Next }}
+        <a href="{{ .Next }}"><img src="{{ .Root }}/chevron-right.svg" alt="next"></a>
+    {{ end }}
     </nav>
-{{ #end }}
+{{ end }}
 </body>
 </html>
