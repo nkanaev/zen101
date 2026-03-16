@@ -22,6 +22,7 @@ jobs:
       - run: |
           cd output
           git init
+          git remote add origin https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}
           git add -A
           git commit -m "$(date -u)"
           git push --force origin HEAD:gh-pages
