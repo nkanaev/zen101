@@ -1,3 +1,16 @@
+:root {
+  --bg: #fff;
+  --fg: #111;
+  --hover: #f36f6f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111;
+    --fg: #eee;
+  }
+}
+
 html {
   font-size: 18px;
   line-height: 1.15;
@@ -10,7 +23,8 @@ body {
   margin: 4rem 0 4rem 3rem;
   padding: 0 1rem;
   font-family: georgia, serif;
-  color: #333;
+  color: var(--fg);
+  background-color: var(--bg);
   hyphens: auto;
 }
 
@@ -56,7 +70,7 @@ a {
 }
 
 a:hover, a:active {
-  color: #f36f6f;
+  color: var(--hover);
 }
 
 nav {
@@ -73,6 +87,12 @@ nav img, nav span {
   height: 1rem;
   width: 1rem;
   padding: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  nav img {
+    filter: invert(1);
+  }
 }
 
 @media screen and (max-width: 44rem) {
