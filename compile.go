@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"html"
 	"html/template"
 	"log"
 	"os"
@@ -97,7 +98,7 @@ func main() {
 			}
 
 			stories = append(stories, Story{
-				Title: titleMatch[1],
+				Title: html.UnescapeString(titleMatch[1]),
 				Body:  template.HTML(body),
 				Num:   num,
 			})
