@@ -1,13 +1,13 @@
 :root {
-  --bg: #fff;
-  --fg: #111;
-  --hover: #f36f6f;
+  --bg: 0, 0%, 100%;
+  --fg: 0, 0%, 6.7%;
+  --hover: 0, 85%, 69%;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #111;
-    --fg: #eee;
+    --bg: 0, 0%, 6.7%;
+    --fg: 0, 0%, 93%;
   }
 }
 
@@ -20,11 +20,11 @@ html {
 
 body {
   max-width: 32rem;
-  margin: 4rem 0 4rem 3rem;
-  padding: 0 1rem;
+  margin: 4rem 0 4rem 1rem;
+  padding: 0 3rem;
   font-family: georgia, serif;
-  color: var(--fg);
-  background-color: var(--bg);
+  color: hsl(var(--fg));
+  background-color: hsl(var(--bg));
   hyphens: auto;
 }
 
@@ -49,16 +49,19 @@ blockquote {
   line-height: 1.66rem;
 }
 
-ul {
+ol {
   margin-left: 0;
   padding: 0;
 }
 
-ul li {
-  margin: 2rem 0;
+ol li {
+  margin: 1.33rem 0;
   display: list-item;
-  list-style: none;
   line-height: 1.66rem;
+}
+
+ol li::marker {
+  color: hsla(var(--fg), 0.5);
 }
 
 a {
@@ -70,7 +73,7 @@ a {
 }
 
 a:hover, a:active {
-  color: var(--hover);
+  color: hsl(var(--hover));
 }
 
 nav {
