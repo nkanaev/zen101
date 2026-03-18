@@ -62,6 +62,7 @@ ol {
 }
 
 ol li {
+  margin: 1.33rem 0;
   line-height: 1.66rem;
   position: relative;
 }
@@ -74,23 +75,6 @@ ol li a {
   position: absolute;
   left: 2rem;
   text-transform: uppercase;
-}
-
-ul {
-  list-style: none;
-}
-
-ul li {
-  margin-block: 1.5rem;
-  line-height: 1.66rem;
-}
-
-ul li .lang {
-  display: inline-block;
-  width: 2rem;
-  text-align: right;
-  margin-right: 0.5rem;
-  color: hsla(var(--fg), 0.5);
 }
 
 a {

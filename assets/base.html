@@ -20,8 +20,8 @@
     <ul>
     {{ range .Langs }}
         <li>
-            <span class="muted">{{ .Code }}</span>
-            <a href="{{ $.Root }}/{{ .Code }}/">{{ .Name }}</a>
+            <span class="lang">{{ .Code }}</span>
+            <a href="{{ $.Root }}/{{ .Code }}/"><i>{{ .Name }}</i></a>
         </li>
     {{ end }}
     </ul>
