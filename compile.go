@@ -37,6 +37,7 @@ type Story struct {
 }
 
 type PageData struct {
+	Num     int
 	Page    string
 	Lang    string
 	Title   string
@@ -57,6 +58,11 @@ func main() {
 
 	join := func(parts ...string) string {
 		return filepath.Join(append([]string{basedir}, parts...)...)
+	}
+
+	glob := func(path string) []string {
+		matches, _ := filepath.Glob(path)
+		return matches
 	}
 
 	md := goldmark.New(
@@ -112,13 +118,20 @@ func main() {
 	}
 	os.MkdirAll(outdir, 0755)
 
-	for _, static := range []string{"favicon.ico", "styles.css", "chevron-left.svg", "chevron-right.svg", "list.svg"} {
+	staticFiles := make([]string, 0)
+	staticFiles = append(staticFiles, glob("assets/*.css")...)
+	staticFiles = append(staticFiles, glob("assets/*.svg")...)
+	staticFiles = append(staticFiles, glob("assets/*.ico")...)
+	staticFiles = append(staticFiles, glob("assets/*.woff")...)
+	staticFiles = append(staticFiles, glob("assets/*.woff2")...)
+	for _, static := range staticFiles {
 		log.Printf("copying %s", static)
-		data, err := os.ReadFile(join("assets", static))
+		data, err := os.ReadFile(static)
 		if err != nil {
 			panic(err)
 		}
-		if err := os.WriteFile(join("output", static), data, 0644); err != nil {
+		staticDest := strings.TrimPrefix(static, "assets/")
+		if err := os.WriteFile(join("output", staticDest), data, 0644); err != nil {
 			panic(err)
 		}
 	}
@@ -154,6 +167,7 @@ func main() {
 			stories[i].Href = fmt.Sprintf("./%03d/", num)
 
 			data := PageData{
+				Num:   num,
 				Page:  "story",
 				Lang:  lang.Code,
 				Root:  "../..",

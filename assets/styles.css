@@ -22,7 +22,7 @@ body {
   max-width: 32rem;
   margin: 4rem 0 4rem 1rem;
   padding: 0 3rem;
-  font-family: georgia, serif;
+  font-family: 'Source Serif 4', georgia, serif;
   color: hsl(var(--fg));
   background-color: hsl(var(--bg));
   hyphens: auto;
@@ -34,13 +34,19 @@ img {
 
 h1 {
   margin-bottom: 3rem;
-  font-size: 1.7rem;
+  font-size: 1rem;
+  font-weight: 700;
   font-style: italic;
 }
 
 p {
   line-height: 1.66rem;
-  margin-bottom: 1rem;
+  margin-block: 0;
+  text-indent: 2rem;
+}
+
+p:first-of-type {
+  text-indent: 0;
 }
 
 blockquote {
@@ -51,17 +57,24 @@ blockquote {
 
 ol {
   margin-left: 0;
-  padding: 0;
+  padding-left: 0;
+  list-style-position: inside;
 }
 
 ol li {
   margin: 1.33rem 0;
-  display: list-item;
   line-height: 1.66rem;
+  position: relative;
 }
 
 ol li::marker {
   color: hsla(var(--fg), 0.5);
+}
+
+ol li a {
+  position: absolute;
+  left: 2rem;
+  text-transform: uppercase;
 }
 
 a {

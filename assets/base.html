@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }}</title>
     <link rel="icon" href="{{ .Root }}/favicon.ico">
+    <link rel="stylesheet" href="{{ .Root }}/font.css">
     <link rel="stylesheet" href="{{ .Root }}/styles.css">
 </head>
 <body>
@@ -16,11 +17,14 @@
     {{ end }}
     </ol>
 {{ else if eq .Page "index" }}
+    <ul>
     {{ range .Langs }}
-        <p>
+        <li>
+            <span class="muted">{{ .Code }}</span>
             <a href="{{ $.Root }}/{{ .Code }}/">{{ .Name }}</a>
-        </p>
+        </li>
     {{ end }}
+    </ul>
 {{ else if eq .Page "story" }}
     {{ .Body }}
     <nav>
