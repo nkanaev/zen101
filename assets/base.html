@@ -11,17 +11,26 @@
 <body>
 {{ if eq .Page "toc" }}
     <h1>{{ .Title }}</h1>
-    <ol>
+    <ul>
     {{ range .Stories }}
-        <li><a href="{{ .Href }}">{{ .Title }}</a></li>
+        <li>
+            <div class="list-item">
+                <span class="list-item-meta">{{ .Num }}.</span>
+                <a href="{{ .Href }}">{{ .Title }}</a>
+            </div>
+        </li>
     {{ end }}
-    </ol>
+    </ul>
 {{ else if eq .Page "index" }}
     <ul>
     {{ range .Langs }}
         <li>
-            <span class="lang">{{ .Code }}</span>
-            <a href="{{ $.Root }}/{{ .Code }}/"><i>{{ .Name }}</i></a>
+            <div class="list-item">
+                <span class="list-item-meta">{{ .Code }}</span>
+                <a href="{{ $.Root }}/{{ .Code }}/"><i>{{ .Name }}</i></a>
+            </div>
+        </li>
+        <li>
         </li>
     {{ end }}
     </ul>

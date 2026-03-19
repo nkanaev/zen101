@@ -2,6 +2,7 @@
   --bg: 0, 0%, 100%;
   --fg: 0, 0%, 6.7%;
   --hover: 0, 85%, 69%;
+  --marker-distance: 2rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,8 +13,9 @@
 }
 
 html {
+  font-family: 'Source Serif 4', georgia, serif;
   font-size: 18px;
-  line-height: 1.15;
+  line-height: 1.66;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -22,14 +24,9 @@ body {
   max-width: 32rem;
   margin: 4rem 0 4rem 1rem;
   padding: 0 3rem;
-  font-family: 'Source Serif 4', georgia, serif;
   color: hsl(var(--fg));
   background-color: hsl(var(--bg));
   hyphens: auto;
-}
-
-img {
-  border-style: none;
 }
 
 h1 {
@@ -40,7 +37,6 @@ h1 {
 }
 
 p {
-  line-height: 1.66rem;
   margin-block: 0;
   text-indent: 2rem;
 }
@@ -52,44 +48,30 @@ p:first-of-type {
 blockquote {
   font-style: italic;
   margin: 0 0 1rem 0rem;
-  line-height: 1.66rem;
 }
 
-ol {
-  margin-left: 0;
-  padding-left: 0;
-  list-style-position: inside;
+.list-item {
+  display: flex;
+  flex-direction: row;
 }
 
-ol li {
-  line-height: 1.66rem;
-  position: relative;
-}
-
-ol li::marker {
+.list-item-meta {
   color: hsla(var(--fg), 0.5);
-}
-
-ol li a {
-  position: absolute;
-  left: 2rem;
-  text-transform: uppercase;
+  flex: 0 0 var(--marker-distance);
 }
 
 ul {
   list-style: none;
+  padding: 0;
 }
 
 ul li {
   margin-block: 1.5rem;
-  line-height: 1.66rem;
 }
 
-ul li .lang {
+ul li .marker {
   display: inline-block;
-  width: 2rem;
-  text-align: right;
-  margin-right: 0.5rem;
+  width: var(--marker-distance);
   color: hsla(var(--fg), 0.5);
 }
 
@@ -130,5 +112,6 @@ nav img, nav span {
 @media screen and (max-width: 44rem) {
   body {
     margin: 4rem auto 2rem;
+    padding: 0 1rem;
   }
 }
