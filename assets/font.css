@@ -1,118 +1,18 @@
-:root {
-  --bg: 0, 0%, 100%;
-  --fg: 0, 0%, 6.7%;
-  --hover: 0, 85%, 69%;
+@font-face {
+    font-family: 'Source Serif 4';
+    src: url('SourceSerif4Italic-Italic.woff2') format('woff2'),
+        url('SourceSerif4Italic-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: 0, 0%, 6.7%;
-    --fg: 0, 0%, 93%;
-  }
+@font-face {
+    font-family: 'Source Serif 4';
+    src: url('SourceSerif4Roman-Regular.woff2') format('woff2'),
+        url('SourceSerif4Roman-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
-html {
-  font-size: 18px;
-  line-height: 1.15;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  max-width: 32rem;
-  margin: 4rem 0 4rem 1rem;
-  padding: 0 3rem;
-  font-family: 'Source Serif 4', georgia, serif;
-  color: hsl(var(--fg));
-  background-color: hsl(var(--bg));
-  hyphens: auto;
-}
-
-img {
-  border-style: none;
-}
-
-h1 {
-  margin-bottom: 3rem;
-  font-size: 1rem;
-  font-weight: 700;
-  font-style: italic;
-}
-
-p {
-  line-height: 1.66rem;
-  margin-block: 0;
-  text-indent: 2rem;
-}
-
-p:first-of-type {
-  text-indent: 0;
-}
-
-blockquote {
-  font-style: italic;
-  margin: 0 0 1rem 0rem;
-  line-height: 1.66rem;
-}
-
-ol {
-  margin-left: 0;
-  padding-left: 0;
-  list-style-position: inside;
-}
-
-ol li {
-  margin: 1.33rem 0;
-  line-height: 1.66rem;
-  position: relative;
-}
-
-ol li::marker {
-  color: hsla(var(--fg), 0.5);
-}
-
-ol li a {
-  position: absolute;
-  left: 2rem;
-  text-transform: uppercase;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  background-color: transparent;
-  -webkit-text-decoration-skip: objects;
-}
-
-a:hover, a:active {
-  color: hsl(var(--hover));
-}
-
-nav {
-  margin-top: 6rem;
-  margin-left: -1rem;
-  margin-right: -1rem;
-}
-
-nav a, nav span {
-  display: inline-block;
-}
-
-nav img, nav span {
-  height: 1rem;
-  width: 1rem;
-  padding: 1rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  nav img {
-    filter: invert(1);
-  }
-}
-
-@media screen and (max-width: 44rem) {
-  body {
-    margin: 4rem auto 2rem;
-  }
-}
