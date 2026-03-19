@@ -120,7 +120,6 @@ func main() {
 
 	staticFiles := make([]string, 0)
 	staticFiles = append(staticFiles, glob("assets/*.css")...)
-	staticFiles = append(staticFiles, glob("assets/*.svg")...)
 	staticFiles = append(staticFiles, glob("assets/*.ico")...)
 	staticFiles = append(staticFiles, glob("assets/*.woff")...)
 	staticFiles = append(staticFiles, glob("assets/*.woff2")...)
