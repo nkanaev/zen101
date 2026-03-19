@@ -13,7 +13,6 @@ import (
 
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
-	ghtml "github.com/yuin/goldmark/renderer/html"
 )
 
 var languages = []LangEntry{
@@ -66,7 +65,6 @@ func main() {
 
 	md := goldmark.New(
 		goldmark.WithExtensions(extension.Typographer),
-		goldmark.WithRendererOptions(ghtml.WithHardWraps()),
 	)
 
 	tmplData, err := os.ReadFile(join("assets", "base.html"))
