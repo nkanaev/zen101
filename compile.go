@@ -45,7 +45,6 @@ type PageData struct {
 	Langs   []LangEntry
 	Stories []Story
 	Body    template.HTML
-	Prev    string
 	Next    string
 }
 
@@ -174,9 +173,6 @@ func main() {
 				Root:  "../..",
 				Title: s.Title,
 				Body:  s.Body,
-			}
-			if num != 1 {
-				data.Prev = fmt.Sprintf("../%03d", num-1)
 			}
 			if num != 101 {
 				data.Next = fmt.Sprintf("../%03d", num+1)

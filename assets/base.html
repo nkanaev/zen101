@@ -38,9 +38,6 @@
     <h1><span class="meta">{{ .Num }}.</span>{{ .Title }}</h1>
     {{ .Body }}
     <nav>
-    {{ if .Prev }}
-        <a href="{{ .Prev }}"><img src="{{ .Root }}/chevron-left.svg" alt="prev"></a>
-    {{ end }}
         <a href="./../"><img src="{{ .Root }}/list.svg" alt="toc"></a>
     {{ if .Next }}
         <a href="{{ .Next }}"><img src="{{ .Root }}/chevron-right.svg" alt="next"></a>
