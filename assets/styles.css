@@ -12,6 +12,11 @@
   }
 }
 
+::selection {
+  color: hsl(var(--bg));
+  background-color: hsl(var(--fg))
+}
+
 html {
   font-family: 'Source Serif 4', georgia, serif;
   font-size: 18px;
