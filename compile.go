@@ -102,6 +102,7 @@ func main() {
 			if titleMatch == nil {
 				panic(fmt.Sprintf("no h1 in %s", mdPath))
 			}
+			body = strings.TrimSpace(h1Re.ReplaceAllString(body, ""))
 
 			stories = append(stories, Story{
 				Title: html.UnescapeString(titleMatch[1]),

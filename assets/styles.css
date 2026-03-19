@@ -36,6 +36,13 @@ h1 {
   font-style: italic;
 }
 
+h1 .meta {
+  display: inline-block;
+  width: var(--marker-distance);
+  color: hsla(var(--fg), 0.5);
+  user-select: none;
+}
+
 p {
   margin-block: 0;
   text-indent: 2rem;
@@ -47,7 +54,7 @@ p:first-of-type {
 
 blockquote {
   font-style: italic;
-  margin: 0 0 1rem 0rem;
+  margin: 1rem 0;
 }
 
 .list-item {
@@ -58,6 +65,7 @@ blockquote {
 .list-item-meta {
   color: hsla(var(--fg), 0.5);
   flex: 0 0 var(--marker-distance);
+  user-select: none;
 }
 
 ul {

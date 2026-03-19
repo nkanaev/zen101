@@ -35,6 +35,7 @@
     {{ end }}
     </ul>
 {{ else if eq .Page "story" }}
+    <h1><span class="meta">{{ .Num }}.</span>{{ .Title }}</h1>
     {{ .Body }}
     <nav>
     {{ if .Prev }}
