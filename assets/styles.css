@@ -106,8 +106,9 @@ nav {
   margin-right: -1rem;
 }
 
-nav a, nav span {
+nav a {
   display: inline-block;
+  font-size: 0;
 }
 
 nav svg {
