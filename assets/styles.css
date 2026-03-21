@@ -104,6 +104,7 @@ nav {
   margin-top: 6rem;
   margin-left: -1rem;
   margin-right: -1rem;
+  user-select: none;
 }
 
 nav a {
