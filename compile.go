@@ -19,8 +19,9 @@ var languages = []LangEntry{
 	{"en", "101 Zen Stories"},
 	{"es", "101 Cuentos Zen"},
 	{"it", "101 Historia Zen"},
-	{"ru", "101 Дзенская История"},
 	{"pl", "101 Opowieści Zen"},
+	{"ru", "101 Дзенская История"},
+	{"vi", "101 TRUYỆN THIỀN"},
 }
 
 type LangEntry struct {
