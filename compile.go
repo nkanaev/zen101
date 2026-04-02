@@ -17,16 +17,16 @@ import (
 
 var languages = []LangEntry{
 	{"en", "101 Zen Stories"},
-	{"es", "101 Cuentos Zen"},
-	{"it", "101 Historia Zen"},
-	{"pl", "101 Opowieści Zen"},
-	{"ru", "101 Дзенская История"},
-	{"vi", "101 TRUYỆN THIỀN"},
+	{"es", "101 Cuentos Zen"},      // Jordi Fibla Feito 
+	{"it", "101 Storie Zen"},       // Adriana Motti
+	{"pl", "101 Opowieści Zen"},    // Wojciech P. P. Zieliński
+	{"ru", "101 Дзенская История"}, // С. А. Кротков
+	{"vi", "101 Truyện Thiền"},     // Tâm Minh Ngô Tằng Giao
 }
 
 type LangEntry struct {
-	Code string
-	Name string
+	Code string  // ISO 639 language code
+	Name string  // Localised title
 }
 
 type Story struct {
