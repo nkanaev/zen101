@@ -59,7 +59,20 @@ p:first-of-type {
 
 blockquote {
   font-style: italic;
-  margin: 1rem 0;
+  margin-left: 4rem;
+  margin-block: 2rem;
+}
+
+blockquote p {
+  text-indent: 0;
+}
+
+blockquote.letter {
+  margin-left: 0;
+}
+
+blockquote.letter p {
+  text-indent: 2rem;
 }
 
 .list-item {
