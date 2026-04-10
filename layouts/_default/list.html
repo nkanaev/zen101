@@ -11,10 +11,10 @@
 <body>
     <h1>{{ .Title }}</h1>
     <ul>
-    {{ range .Pages.ByParam "order" }}
+    {{ range sort .Pages ".File.BaseFileName" }}
         <li>
             <div class="list-item">
-                <span class="list-item-meta">{{ .Params.order }}.</span>
+                <span class="list-item-meta">{{ strings.TrimLeft "0" .File.BaseFileName }}.</span>
                 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
             </div>
         </li>
