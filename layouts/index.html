@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Site.Title }}</title>
+    <link rel="icon" href="{{ "favicon.ico" | relURL }}">
+    <link rel="stylesheet" href="{{ "font.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "styles.css" | relURL }}">
+</head>
+<body>
+    <ul>
+    {{ range sort .Site.Sections "Section" "asc" }}
+        <li>
+            <div class="list-item">
+                <span class="list-item-meta">{{ .Section }}</span>
+                <a href="{{ .RelPermalink }}"><i>{{ .Title }}</i></a>
+            </div>
+        </li>
+    {{ end }}
+    </ul>
+</body>
+</html>

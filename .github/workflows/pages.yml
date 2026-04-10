@@ -13,14 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-go@v5
+      - uses: peaceiris/actions-hugo@v3
         with:
-          go-version: "1.21"
+          hugo-version: 'latest'
 
-      - run: go run compile.go
+      - run: hugo
 
       - run: |
-          cd output
+          cd public
           git init
           git remote add origin https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}
           git add -A

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ .Section }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }}</title>
+    <link rel="icon" href="{{ "favicon.ico" | relURL }}">
+    <link rel="stylesheet" href="{{ "font.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "styles.css" | relURL }}">
+</head>
+<body>
+    <h1>{{ .Title }}</h1>
+    <ul>
+    {{ range .Pages.ByParam "order" }}
+        <li>
+            <div class="list-item">
+                <span class="list-item-meta">{{ .Params.order }}.</span>
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </div>
+        </li>
+    {{ end }}
+    </ul>
+</body>
+</html>

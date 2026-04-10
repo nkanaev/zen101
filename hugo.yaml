@@ -1,0 +1,11 @@
+baseURL: "https://nkanaev.github.io/zen101/"
+title: "禪"
+
+disableKinds: [taxonomy, term, rss]
+
+markup:
+  goldmark:
+    extensions:
+      typographer: true
+    renderer:
+      unsafe: true
